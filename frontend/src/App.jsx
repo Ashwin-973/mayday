@@ -82,15 +82,13 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Header */}
       <div className="header">
         <div className="header-content">
-          <h1 className="header-title">AI Agent</h1>
+          <h1 className="header-title">Mayday</h1>
           <p className="header-subtitle">Weather & Stock Information Assistant</p>
         </div>
       </div>
 
-      {/* Messages Container */}
       <div className="messages-container">
         {messages.length === 0 ? (
           <div className="welcome-screen">
@@ -122,7 +120,6 @@ function App() {
         )}
       </div>
 
-      {/* Input Area */}
       <div className="input-container">
         <div className="input-wrapper">
           <input

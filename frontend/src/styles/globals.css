@@ -2,11 +2,11 @@
 
 /* Modern CSS Variables */
 :root {
-    --bg-primary: #0f0f0f;
+    --bg-primary: #000000;
     --bg-secondary: #1a1a1a;
     --bg-tertiary: #2a2a2a;
     --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
+    --text-secondary: #ececec;
     --accent-blue: #3b82f6;
     --accent-blue-dark: #2563eb;
     --accent-purple: #8b5cf6;
@@ -35,14 +35,12 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+    background: linear-gradient(135deg, #f8f8f8 0%, #232032 100%);
 }
 
-/* Header */
 .header {
-    background: rgba(26, 26, 26, 0.8);
+    background: rgba(0, 0, 0,1);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-color);
     padding: 1.5rem 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
@@ -132,11 +130,11 @@ body {
 }
 
 .example-query {
-    background: var(--bg-secondary);
+    background: #fff;
     padding: 0.875rem 1.5rem;
-    border-radius: 12px;
+    border-radius: 32px;
     border: 1px solid var(--border-color);
-    color: var(--text-secondary);
+    color: #000;
     font-size: 0.95rem;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -144,9 +142,9 @@ body {
 }
 
 .example-query:hover {
-    background: var(--bg-tertiary);
+    background: #767676;
     border-color: var(--accent-blue);
-    color: var(--text-primary);
+    color: #fff;
     transform: translateY(-2px);
 }
 
@@ -204,9 +202,8 @@ body {
 /* Input Container */
 .input-container {
     padding: 1.5rem 2rem;
-    background: rgba(26, 26, 26, 0.8);
+    background: rgba(0, 0, 0, 1);
     backdrop-filter: blur(20px);
-    border-top: 1px solid var(--border-color);
 }
 
 .input-wrapper {
@@ -219,11 +216,11 @@ body {
 
 .message-input {
     flex: 1;
-    background: var(--bg-secondary);
+    background:#2d2d2d;
     border: 2px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 32px;
     padding: 0.875rem 1.25rem;
-    color: var(--text-primary);
+    color: #fff;
     font-size: 0.95rem;
     outline: none;
     transition: all 0.3s ease;
