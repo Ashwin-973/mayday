@@ -31,4 +31,21 @@ def get_stock_price(symbol, exchange=None):
         "market_open": data["is_market_open"]
     }
 
-print(get_stock_price("RELIANCE", "NSE"))
+
+def format_stock_response(stock):
+    if stock["error"]:
+        return (
+            "I can't fetch live prices for this exchange with the free plan. "
+            "Would you like to try NASDAQ instead?"
+        )
+
+    status = "Open" if stock["market_open"] else "Closed"
+
+    return (
+        f"{stock['name']} ({stock['symbol']}) is trading at "
+        f"{stock['price']} {stock['currency']} on {stock['exchange']}.\n"
+        f"Change today: {stock['percent_change']}%.\n"
+        f"Market status: {status}."
+    )
+
+print(format_stock_response(get_stock_price("MSFT", "NASDAQ")))
