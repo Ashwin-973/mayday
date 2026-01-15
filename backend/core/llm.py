@@ -116,7 +116,12 @@ Examples:
 - "How's the weather?" -> {{"location": null}}
 - "Tell me" -> {{"location": null}}"""
         
-        context = f"\nPreviously extracted: {existing_slots}" if existing_slots else ""
+        # Format existing slots without curly braces to avoid LangChain template variable conflicts
+        if existing_slots:
+            slots_str = ", ".join([f"{k}={v}" for k, v in existing_slots.items()])
+            context = f"\nPreviously extracted slots: {slots_str}"
+        else:
+            context = ""
         
     else:  # stock
         parser = JsonOutputParser(pydantic_object=StockSlots)
@@ -132,7 +137,12 @@ Examples:
 - "Reliance on NSE" -> {{"symbol": "RELIANCE", "exchange": "NSE"}}
 - "Stock price" -> {{"symbol": null, "exchange": null}}"""
         
-        context = f"\nPreviously extracted: {existing_slots}" if existing_slots else ""
+        # Format existing slots without curly braces to avoid LangChain template variable conflicts
+        if existing_slots:
+            slots_str = ", ".join([f"{k}={v}" for k, v in existing_slots.items()])
+            context = f"\nPreviously extracted slots: {slots_str}"
+        else:
+            context = ""
     
     prompt = ChatPromptTemplate.from_messages([
         ("system", f"{slot_description}{context}\n\nRespond ONLY with valid JSON."),
