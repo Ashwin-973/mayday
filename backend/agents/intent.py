@@ -3,7 +3,7 @@ Intent detection module.
 Uses LLM to classify user intent and generate clarification for unknown intents.
 """
 
-from core.llm import classify_intent as llm_classify_intent
+from core.llm import classify_intent as llm_classify_intent, generate_general_response
 
 
 def detect_intent(message: str) -> str:
@@ -19,11 +19,15 @@ def detect_intent(message: str) -> str:
     return llm_classify_intent(message)
 
 
-def generate_unknown_intent_response() -> str:
+def generate_general_conversation_response(message: str) -> str:
     """
-    Generate a guided clarification message for unknown intents.
+    Generate a natural conversational response for general queries.
+    Uses LLM to provide engaging responses for non-weather/non-stock queries.
+    
+    Args:
+        message: User's message
     
     Returns:
-        Clarification message
+        Natural conversational response
     """
-    return "I can help you with weather forecasts or stock prices. Which would you like?"
+    return generate_general_response(message)
