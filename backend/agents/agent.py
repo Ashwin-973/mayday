@@ -4,7 +4,7 @@ Implements the conversation loop with intent detection, slot filling, and API ca
 """
 
 from typing import AsyncGenerator
-from agents.intent import detect_intent, generate_unknown_intent_response
+from agents.intent import detect_intent, generate_general_conversation_response
 from agents.slots import extract_slots, validate_slots, generate_clarification
 from services.weather import (
     get_weather_for_city,
@@ -53,9 +53,10 @@ async def process_message(session_id: str, message: str) -> AsyncGenerator[str, 
     # Step 1: Detect intent
     intent = detect_intent(message)
     
-    # Handle unknown intent
+    # Handle general conversation (unknown intent)
     if intent == "unknown":
-        response = generate_unknown_intent_response()
+        # Use LLM to generate natural conversational response
+        response = generate_general_conversation_response(message)
         # Stream response word by word for smooth effect
         words = response.split()
         for i, word in enumerate(words):
