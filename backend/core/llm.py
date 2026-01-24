@@ -161,6 +161,45 @@ Examples:
         return existing_slots
 
 
+def generate_general_response(message: str) -> str:
+    """
+    Generate a natural conversational response for general queries using LLM.
+    Used when the user's message doesn't match weather or stock intents.
+    
+    Args:
+        message: User's message
+    
+    Returns:
+        Natural conversational response
+    """
+    llm = get_llm()
+    
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", """You are a friendly and helpful AI assistant. 
+Engage in natural conversation with the user. Be concise, warm, and helpful.
+
+You can help with:
+- General conversation and questions
+- Answering questions about various topics
+- Providing information and assistance
+
+You also have specialized capabilities for:
+- Weather forecasts (just ask about weather in any city)
+- Stock prices (just ask about any stock symbol)
+
+But for now, just respond naturally to the user's message without pushing these features."""),
+        ("user", "{message}")
+    ])
+    
+    try:
+        chain = prompt | llm
+        response = chain.invoke({"message": message})
+        return response.content.strip()
+    except Exception as e:
+        print(f"General response generation error: {e}")
+        return "I'm here to chat! I can also help you with weather forecasts or stock prices if you need them."
+
+
 def format_response(data: Dict, response_type: str) -> str:
     """
     Format API response data into natural language using LLM.
